@@ -2,10 +2,14 @@
 
 import { motion } from "motion/react";
 import TextWithTooltip from "@/registry/new-york/text-with-tooltip/text-with-tooltip";
+import { cn } from "@/lib/utils";
 
-export function PageFooter() {
+export function PageFooter({ className }: { className?: string }) {
     return (
-        <footer className="bg-background/80 backdrop-blur-sm">
+        <footer className={cn(
+            "bg-background/80 backdrop-blur-sm",
+            className
+        )}>
             <div className="max-w-4xl mx-auto px-6 py-8">
                 <motion.div
                     className="flex flex-row items-center justify-between"
