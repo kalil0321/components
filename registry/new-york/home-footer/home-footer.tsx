@@ -4,11 +4,12 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
-export default function Footer() {
+export default function HomeFooter({ className }: { className?: string }) {
     return (
         <TooltipProvider delayDuration={100}>
-            <footer className="w-full py-4 mt-4">
+            <footer className={cn("w-full py-4 mt-4", className)}>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center justify-start gap-1">
                         <a
