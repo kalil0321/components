@@ -76,7 +76,7 @@ export function PageHeader({ className }: { className?: string }) {
                                     : "none",
                             }}
                         >
-                            {["Browse", "Nav", "Chat", "Integrations"].map(
+                            {["Browse", "Chat", "Integrations"].map(
                                 (item) => (
                                     <Link
                                         key={item}
@@ -181,7 +181,6 @@ export function PageHeader({ className }: { className?: string }) {
                                 >
                                     {[
                                         "Browse",
-                                        "Nav",
                                         "Chat",
                                         "Integrations",
                                     ].map((item, index) => (
