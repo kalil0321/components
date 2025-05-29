@@ -116,7 +116,7 @@
                     "type": "registry:component"
                 },
                 {
-                    "path": "public/profile_picture_no_bg.png",
+                    "path": "registry/new-york/particles/profile_picture_no_bg.png",
                     "type": "registry:file"
                 }
             ]
