@@ -1,58 +1,91 @@
-import * as React from "react"
-import { OpenInV0Button } from "@/components/open-in-v0-button"
-import { HelloWorld } from "@/registry/new-york/hello-world/hello-world"
-import { ExampleForm } from "@/registry/new-york/example-form/example-form"
-import PokemonPage from "@/registry/new-york/complex-component/page"
+"use client";
+
+import * as React from "react";
+import { PageHeader } from "@/components/header";
+import { ComponentShowcase } from "@/components/component-showcase";
+import { PageFooter } from "@/registry/new-york/footer/footer";
+import { motion } from "framer-motion";
+import TextWithTooltip from "@/registry/new-york/text-with-tooltip/text-with-tooltip";
+import HomeFooter from "@/registry/new-york/home-footer/home-footer";
+import { ModeToggle } from "@/registry/new-york/mode-toggle/mode-toggle";
+import HomeHeader from "@/registry/new-york/home-header/home-header";
 
 // This page displays items from the custom registry.
 // You are free to implement this with your own design as needed.
 
 export default function Home() {
-  return (
-    <div className="max-w-3xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
-      <header className="flex flex-col gap-1">
-        <h1 className="text-3xl font-bold tracking-tight">Custom Registry</h1>
-        <p className="text-muted-foreground">
-          A custom registry for distributing code using shadcn.
-        </p>
-      </header>
-      <main className="flex flex-col flex-1 gap-8">
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A simple hello world component
-            </h2>
-            <OpenInV0Button name="hello-world" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <HelloWorld />
-          </div>
-        </div>
+    return (
+        <motion.div
+            className="min-h-screen"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
+            <PageHeader className="z-50" />
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A contact form with Zod validation.
-            </h2>
-            <OpenInV0Button name="example-form" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[500px] relative">
-            <ExampleForm />
-          </div>
-        </div>
+            <motion.main
+                id="components"
+                className="max-w-4xl mx-auto px-6 py-16"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+            >
+                <div className="space-y-16">
+                    <ComponentShowcase
+                        title="Header"
+                        description="Header"
+                        componentName="header"
+                    >
+                        {/* TODO: make it mock so it's not a real header with functionally */}
+                        <PageHeader />
+                    </ComponentShowcase>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A complex component showing hooks, libs and components.
-            </h2>
-            <OpenInV0Button name="complex-component" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <PokemonPage />
-          </div>
-        </div>
-      </main>
-    </div>
-  )
+                    <ComponentShowcase
+                        title="Mode Toggle"
+                        description="Mode Toggle"
+                        componentName="mode-toggle"
+                    >
+                        <ModeToggle />
+                    </ComponentShowcase>
+
+                    <ComponentShowcase
+                        title="Footer"
+                        description="Footer"
+                        componentName="footer"
+                    >
+                        {/* TODO: make it mock so it's not a real footer with functionality */}
+                        <PageFooter />
+                    </ComponentShowcase>
+
+                    <ComponentShowcase
+                        title="Text with Tooltip"
+                        description="Text with tooltip"
+                        componentName="text-with-tooltip"
+                        minHeight="min-h-[400px]"
+                    >
+                        <TextWithTooltip />
+                    </ComponentShowcase>
+
+                    <ComponentShowcase
+                        title="Home Header"
+                        description="Home Header"
+                        componentName="home-header"
+                    >
+                        <HomeHeader />
+                    </ComponentShowcase>
+
+                    <ComponentShowcase
+                        title="Main Footer"
+                        description="Footer"
+                        componentName="footer"
+                        minHeight="min-h-[200px]"
+                    >
+                        <HomeFooter />
+                    </ComponentShowcase>
+                </div>
+            </motion.main>
+
+            <PageFooter />
+        </motion.div>
+    );
 }
