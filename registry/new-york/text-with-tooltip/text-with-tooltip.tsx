@@ -4,12 +4,16 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
-export default function TextWithTooltip() {
+export default function TextWithTooltip({ className }: { className?: string }) {
     return (
         <TooltipProvider delayDuration={100}>
             <Tooltip>
-                <TooltipTrigger asChild className="hidden sm:block">
+                <TooltipTrigger
+                    asChild
+                    className={cn("hidden sm:block", className)}
+                >
                     <a
                         className="group relative px-4 py-2 rounded-lg text-sm font-medium transition-all text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 animate-float"
                         rel="noopener noreferrer"
