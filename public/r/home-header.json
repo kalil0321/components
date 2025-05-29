@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "home-header",
+  "type": "registry:component",
+  "title": "Home Header",
+  "description": "A home header component (for Next.js)",
+  "dependencies": [
+    "next/link",
+    "next/navigation"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/home-header/home-header.tsx",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport Link from \"next/link\";\nimport { usePathname } from \"next/navigation\";\n\nconst navItems = {\n    \"/\": {\n        name: \"home\",\n    },\n    \"/old\": {\n        name: \"old\",\n    },\n    \"/new\": {\n        name: \"new\",\n    },\n};\n\nexport default function HomeHeader({ className }: { className?: string }) {\n    const currentPath = usePathname();\n\n    return (\n        <nav className={cn(\"w-full py-4\", className)}>\n            <div className=\"flex items-center justify-start gap-1 \">\n                {Object.entries(navItems).map(([path, { name }]) => {\n                    const isActive = path === currentPath;\n                    return (\n                        <Link\n                            key={path}\n                            href={path}\n                            prefetch={true}\n                            className={`\n                                relative px-4 py-2 rounded-lg text-sm font-medium transition-all\n                                ${\n                                    isActive\n                                        ? \"text-neutral-800 dark:text-neutral-100\"\n                                        : \"text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200\"\n                                }\n                            `}\n                        >\n                            {name}\n                            {isActive && (\n                                <span className=\"absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-neutral-500/0 via-neutral-500/70 to-neutral-500/0 dark:from-neutral-400/0 dark:via-neutral-400/40 dark:to-neutral-400/0\" />\n                            )}\n                        </Link>\n                    );\n                })}\n            </div>\n        </nav>\n    );\n}\n",
+      "type": "registry:component"
+    }
+  ]
+}
