@@ -1,64 +1,158 @@
 {
-  "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "acme",
-  "homepage": "https://acme.com",
-  "items": [
-    {
-      "name": "hello-world",
-      "type": "registry:component",
-      "title": "Hello World",
-      "description": "A simple hello world component",
-      "registryDependencies": ["button"],
-      "files": [
+    "$schema": "https://ui.shadcn.com/schema/registry.json",
+    "name": "acme",
+    "homepage": "https://acme.com",
+    "items": [
         {
-          "path": "registry/new-york/hello-world/hello-world.tsx",
-          "type": "registry:component"
+            "name": "hello-world",
+            "type": "registry:component",
+            "title": "Hello World",
+            "description": "A simple hello world component",
+            "registryDependencies": ["button"],
+            "files": [
+                {
+                    "path": "registry/new-york/hello-world/hello-world.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "header",
+            "type": "registry:component",
+            "title": "Header",
+            "description": "A header component",
+            "dependencies": ["motion"],
+            "files": [
+                {
+                    "path": "registry/new-york/header/header.tsx",
+                    "type": "registry:component"
+                },
+                {
+                    "path": "registry/new-york/mode-toggle/mode-toggle.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "footer",
+            "type": "registry:component",
+            "title": "Footer",
+            "description": "A footer component",
+            "registryDependencies": ["button"],
+            "dependencies": ["motion"],
+            "files": [
+                {
+                    "path": "registry/new-york/footer/footer.tsx",
+                    "type": "registry:component"
+                },
+                {
+                    "path": "registry/new-york/text-with-tooltip/text-with-tooltip.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "home-header",
+            "type": "registry:component",
+            "title": "Home Header",
+            "description": "A home header component (for Next.js)",
+            "dependencies": ["next/link", "next/navigation"],
+            "files": [
+                {
+                    "path": "registry/new-york/home-header/home-header.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "home-footer",
+            "type": "registry:component",
+            "title": "Home Footer",
+            "description": "A home footer component",
+            "registryDependencies": ["tooltip"],
+            "files": [
+                {
+                    "path": "registry/new-york/home-footer/home-footer.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "mode-toggle",
+            "type": "registry:component",
+            "title": "Mode Toggle",
+            "description": "A mode toggle component",
+            "registryDependencies": ["button"],
+            "dependencies": ["next-themes"],
+            "files": [
+                {
+                    "path": "registry/new-york/mode-toggle/mode-toggle.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "text-with-tooltip",
+            "type": "registry:component",
+            "title": "Text with Tooltip",
+            "description": "A text with tooltip component",
+            "registryDependencies": ["tooltip"],
+            "files": [
+                {
+                    "path": "registry/new-york/text-with-tooltip/text-with-tooltip.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "example-form",
+            "type": "registry:component",
+            "title": "Example Form",
+            "description": "A contact form with Zod validation.",
+            "dependencies": ["zod"],
+            "registryDependencies": [
+                "button",
+                "input",
+                "label",
+                "textarea",
+                "card"
+            ],
+            "files": [
+                {
+                    "path": "registry/new-york/example-form/example-form.tsx",
+                    "type": "registry:component"
+                }
+            ]
+        },
+        {
+            "name": "complex-component",
+            "type": "registry:component",
+            "title": "Complex Component",
+            "description": "A complex component showing hooks, libs and components.",
+            "registryDependencies": ["card"],
+            "files": [
+                {
+                    "path": "registry/new-york/complex-component/page.tsx",
+                    "type": "registry:page",
+                    "target": "app/pokemon/page.tsx"
+                },
+                {
+                    "path": "registry/new-york/complex-component/components/pokemon-card.tsx",
+                    "type": "registry:component"
+                },
+                {
+                    "path": "registry/new-york/complex-component/components/pokemon-image.tsx",
+                    "type": "registry:component"
+                },
+                {
+                    "path": "registry/new-york/complex-component/lib/pokemon.ts",
+                    "type": "registry:lib"
+                },
+                {
+                    "path": "registry/new-york/complex-component/hooks/use-pokemon.ts",
+                    "type": "registry:hook"
+                }
+            ]
         }
-      ]
-    },
-    {
-      "name": "example-form",
-      "type": "registry:component",
-      "title": "Example Form",
-      "description": "A contact form with Zod validation.",
-      "dependencies": ["zod"],
-      "registryDependencies": ["button", "input", "label", "textarea", "card"],
-      "files": [
-        {
-          "path": "registry/new-york/example-form/example-form.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "complex-component",
-      "type": "registry:component",
-      "title": "Complex Component",
-      "description": "A complex component showing hooks, libs and components.",
-      "registryDependencies": ["card"],
-      "files": [
-        {
-          "path": "registry/new-york/complex-component/page.tsx",
-          "type": "registry:page",
-          "target": "app/pokemon/page.tsx"
-        },
-        {
-          "path": "registry/new-york/complex-component/components/pokemon-card.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/new-york/complex-component/components/pokemon-image.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/new-york/complex-component/lib/pokemon.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/new-york/complex-component/hooks/use-pokemon.ts",
-          "type": "registry:hook"
-        }
-      ]
-    }
-  ]
+    ]
 }
