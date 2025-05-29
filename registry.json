@@ -105,6 +105,23 @@
             ]
         },
         {
+            "name": "particles",
+            "type": "registry:component",
+            "title": "Particles",
+            "description": "A particles component",
+            "dependencies": ["react-particle-image"],
+            "files": [
+                {
+                    "path": "registry/new-york/particles/particles.tsx",
+                    "type": "registry:component"
+                },
+                {
+                    "path": "public/profile_picture_no_bg.png",
+                    "type": "registry:file"
+                }
+            ]
+        },
+        {
             "name": "example-form",
             "type": "registry:component",
             "title": "Example Form",
