@@ -1,3 +1,5 @@
+"use client";
+
 import {
     Tooltip,
     TooltipContent,
@@ -5,8 +7,15 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 export default function HomeFooter({ className }: { className?: string }) {
+    const [currentYear, setCurrentYear] = useState(2024);
+
+    useEffect(() => {
+        setCurrentYear(new Date().getFullYear());
+    }, []);
+
     return (
         <TooltipProvider delayDuration={100}>
             <footer className={cn("w-full py-4 mt-4", className)}>
@@ -64,8 +73,11 @@ export default function HomeFooter({ className }: { className?: string }) {
                         </Tooltip>
                     </div>
 
-                    <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                        © {new Date().getFullYear()}
+                    <span
+                        className="text-sm font-medium text-neutral-600 dark:text-neutral-400"
+                        suppressHydrationWarning
+                    >
+                        © {currentYear}
                     </span>
                 </div>
             </footer>

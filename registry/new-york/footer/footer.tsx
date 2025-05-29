@@ -3,13 +3,17 @@
 import { motion } from "motion/react";
 import TextWithTooltip from "@/registry/new-york/text-with-tooltip/text-with-tooltip";
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 export function PageFooter({ className }: { className?: string }) {
+    const [currentYear, setCurrentYear] = useState(2024);
+
+    useEffect(() => {
+        setCurrentYear(new Date().getFullYear());
+    }, []);
+
     return (
-        <footer className={cn(
-            "bg-background/80 backdrop-blur-sm",
-            className
-        )}>
+        <footer className={cn("bg-background/80 backdrop-blur-sm", className)}>
             <div className="max-w-4xl mx-auto px-6 py-8">
                 <motion.div
                     className="flex flex-row items-center justify-between"
@@ -40,8 +44,9 @@ export function PageFooter({ className }: { className?: string }) {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4, duration: 0.6 }}
+                        suppressHydrationWarning
                     >
-                        © {new Date().getFullYear()} Built with{" "}
+                        © {currentYear} Built with{" "}
                         <motion.span
                             className="inline-block text-red-500"
                             animate={{ scale: [1, 1.2, 1] }}

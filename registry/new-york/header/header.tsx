@@ -9,8 +9,11 @@ import { cn } from "@/lib/utils";
 
 export function PageHeader({ className }: { className?: string }) {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
+
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
@@ -18,6 +21,9 @@ export function PageHeader({ className }: { className?: string }) {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    // Prevent hydration mismatches by not showing scroll-dependent content until mounted
+    const shouldShowScrollBehavior = mounted && isScrolled;
 
     return (
         <motion.header
@@ -60,12 +66,14 @@ export function PageHeader({ className }: { className?: string }) {
                             className="hidden md:flex items-center gap-4 text-sm"
                             initial={false}
                             animate={{
-                                opacity: isScrolled ? 1 : 0,
-                                x: isScrolled ? 0 : -20,
+                                opacity: shouldShowScrollBehavior ? 1 : 0,
+                                x: shouldShowScrollBehavior ? 0 : -20,
                             }}
                             transition={{ duration: 0.3 }}
                             style={{
-                                pointerEvents: isScrolled ? "auto" : "none",
+                                pointerEvents: shouldShowScrollBehavior
+                                    ? "auto"
+                                    : "none",
                             }}
                         >
                             {["Browse", "Documentation", "Examples"].map(
@@ -97,12 +105,14 @@ export function PageHeader({ className }: { className?: string }) {
                             className="flex items-center gap-4"
                             initial={false}
                             animate={{
-                                opacity: isScrolled ? 1 : 0,
-                                x: isScrolled ? 0 : 20,
+                                opacity: shouldShowScrollBehavior ? 1 : 0,
+                                x: shouldShowScrollBehavior ? 0 : 20,
                             }}
                             transition={{ duration: 0.3 }}
                             style={{
-                                pointerEvents: isScrolled ? "auto" : "none",
+                                pointerEvents: shouldShowScrollBehavior
+                                    ? "auto"
+                                    : "none",
                             }}
                         >
                             <Link
@@ -137,8 +147,8 @@ export function PageHeader({ className }: { className?: string }) {
                     className="overflow-hidden"
                     initial={false}
                     animate={{
-                        height: isScrolled ? 0 : "auto",
-                        opacity: isScrolled ? 0 : 1,
+                        height: shouldShowScrollBehavior ? 0 : "auto",
+                        opacity: shouldShowScrollBehavior ? 0 : 1,
                     }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
