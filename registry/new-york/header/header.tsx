@@ -5,8 +5,9 @@ import { Code2 } from "lucide-react";
 import { ModeToggle } from "@/registry/new-york/mode-toggle/mode-toggle";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
-export function PageHeader() {
+export function PageHeader({ className }: { className?: string }) {
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
@@ -20,7 +21,10 @@ export function PageHeader() {
 
     return (
         <motion.header
-            className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+            className={cn(
+                "sticky top-0 z-1 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+                className
+            )}
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
