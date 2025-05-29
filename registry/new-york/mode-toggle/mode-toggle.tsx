@@ -5,14 +5,15 @@ import { useTheme } from "next-themes";
 
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-export function ModeToggle() {
+export function ModeToggle({ className }: { className?: string }) {
     const { setTheme, resolvedTheme } = useTheme();
     const [, startTransition] = React.useTransition();
 
     return (
         <Button
-            className="h-7 w-7"
+            className={cn("h-7 w-7", className)}
             onClick={() => {
                 startTransition(() => {
                     setTheme(resolvedTheme === "dark" ? "light" : "dark");
