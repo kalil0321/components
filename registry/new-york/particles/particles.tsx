@@ -6,7 +6,7 @@ import ParticleImage, {
     ParticleOptions,
     forces,
 } from "react-particle-image";
-import astronautNoBg from "public/profile_picture_no_bg.png";
+import astronautNoBg from "./profile_picture_no_bg.png";
 
 const darkModeParticleOptions: ParticleOptions = {
     color: ({ x, y, image }) => {
