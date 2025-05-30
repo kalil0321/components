@@ -31,12 +31,12 @@ export default function Particles({
     scale = 1,
     backgroundColor,
 }: {
-    image: string;
-    maxParticles: number;
-    width: number;
-    height: number;
-    scale: number;
-    backgroundColor: string;
+    image?: string;
+    maxParticles?: number;
+    width?: number;
+    height?: number;
+    scale?: number;
+    backgroundColor?: string;
 }) {
     const { setTheme, resolvedTheme } = useTheme();
 
