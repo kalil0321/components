@@ -20,9 +20,7 @@ export interface RegistryFile {
 export async function getComponentFromRegistry(
     componentName: string
 ): Promise<RegistryItem | null> {
-    let baseUrl: string;
-
-    baseUrl = "https://components.kalil0321.com"; // for some reason, the env var doesn't work...
+    const baseUrl = "https://components.kalil0321.com"; // for some reason, the env var doesn't work...
 
     const url = `${baseUrl}/r/${componentName}.json`;
     console.log("Fetching component from registry:", url);
