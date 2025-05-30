@@ -76,21 +76,19 @@ export function PageHeader({ className }: { className?: string }) {
                                     : "none",
                             }}
                         >
-                            {["Browse", "Chat", "Integrations"].map(
-                                (item) => (
-                                    <Link
-                                        key={item}
-                                        href={
-                                            item === "Browse"
-                                                ? "#components"
-                                                : `/${item.toLowerCase()}`
-                                        }
-                                        className="text-muted-foreground hover:text-foreground transition-colors"
-                                    >
-                                        {item}
-                                    </Link>
-                                )
-                            )}
+                            {["Browse", "Chat", "Integrations"].map((item) => (
+                                <Link
+                                    key={item}
+                                    href={
+                                        item === "Browse"
+                                            ? "#components"
+                                            : `/${item.toLowerCase()}`
+                                    }
+                                    className="text-muted-foreground hover:text-foreground transition-colors"
+                                >
+                                    {item}
+                                </Link>
+                            ))}
                         </motion.div>
                     </div>
 
@@ -179,33 +177,31 @@ export function PageHeader({ className }: { className?: string }) {
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 0.6, duration: 0.5 }}
                                 >
-                                    {[
-                                        "Browse",
-                                        "Chat",
-                                        "Integrations",
-                                    ].map((item, index) => (
-                                        <motion.div
-                                            key={item}
-                                            initial={{ opacity: 0, y: 10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{
-                                                delay: 0.7 + index * 0.1,
-                                                duration: 0.3,
-                                            }}
-                                            whileHover={{ y: -2 }}
-                                        >
-                                            <Link
-                                                href={
-                                                    item === "Browse"
-                                                        ? "#components"
-                                                        : `/${item.toLowerCase()}`
-                                                }
-                                                className="text-muted-foreground hover:text-foreground transition-colors"
+                                    {["Browse", "Chat", "Integrations"].map(
+                                        (item, index) => (
+                                            <motion.div
+                                                key={item}
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{
+                                                    delay: 0.7 + index * 0.1,
+                                                    duration: 0.3,
+                                                }}
+                                                whileHover={{ y: -2 }}
                                             >
-                                                {item}
-                                            </Link>
-                                        </motion.div>
-                                    ))}
+                                                <Link
+                                                    href={
+                                                        item === "Browse"
+                                                            ? "#components"
+                                                            : `/${item.toLowerCase()}`
+                                                    }
+                                                    className="text-muted-foreground hover:text-foreground transition-colors"
+                                                >
+                                                    {item}
+                                                </Link>
+                                            </motion.div>
+                                        )
+                                    )}
                                 </motion.div>
                             </div>
 
