@@ -9,7 +9,6 @@ import TextWithTooltip from "@/registry/new-york/text-with-tooltip/text-with-too
 import HomeFooter from "@/registry/new-york/home-footer/home-footer";
 import { ModeToggle } from "@/registry/new-york/mode-toggle/mode-toggle";
 import HomeHeader from "@/registry/new-york/home-header/home-header";
-import Particles from "@/registry/new-york/particles/particles";
 
 // This page displays items from the custom registry.
 // You are free to implement this with your own design as needed.
@@ -32,14 +31,6 @@ export default function Home() {
         transition={{ delay: 0.2, duration: 0.8 }}
       >
         <div className="space-y-16">
-          <ComponentShowcase
-            title="Particles"
-            description="Particles"
-            componentName="particles"
-          >
-            <Particles />
-          </ComponentShowcase>
-
           <ComponentShowcase
             title="Header"
             description="Header"
