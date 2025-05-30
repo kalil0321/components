@@ -109,7 +109,7 @@
             "type": "registry:component",
             "title": "Particles",
             "description": "A particles component",
-            "dependencies": ["react-particle-image"],
+            "dependencies": ["react-particle-image", "next-themes"],
             "files": [
                 {
                     "path": "registry/new-york/particles/particles.tsx",
