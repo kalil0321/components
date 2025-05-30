@@ -21,6 +21,7 @@ import {
     Code,
     ExternalLink,
 } from "lucide-react";
+import { RegistryFile } from "@/lib/registry-utils";
 
 interface SourceFile {
     path: string;
@@ -83,7 +84,7 @@ MemoizedSyntaxHighlighter.displayName = "MemoizedSyntaxHighlighter";
 export function SourceCodeViewer({ componentName }: SourceCodeViewerProps) {
     const [sourceData, setSourceData] = useState<{
         component: ComponentData;
-        sourceFiles: SourceFile[];
+        sourceFiles: RegistryFile[];
     } | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -185,11 +186,13 @@ export function SourceCodeViewer({ componentName }: SourceCodeViewerProps) {
 
         return sourceData.sourceFiles.map((file, index) => ({
             ...file,
-            language: getLanguageFromFileName(file.fileName),
+            language: getLanguageFromFileName(file.path.split("/").pop() || ""),
             component: (
                 <MemoizedSyntaxHighlighter
-                    key={`${file.fileName}-${index}`}
-                    language={getLanguageFromFileName(file.fileName)}
+                    key={`${file.path}-${index}`}
+                    language={getLanguageFromFileName(
+                        file.path.split("/").pop() || ""
+                    )}
                     content={file.content}
                     isVisible={index === activeFileIndex}
                 />
@@ -304,7 +307,7 @@ export function SourceCodeViewer({ componentName }: SourceCodeViewerProps) {
                                                 className="flex items-center gap-2"
                                             >
                                                 {getFileTypeIcon(file.type)}
-                                                {file.fileName}
+                                                {file.path.split("/").pop()}
                                             </Button>
                                         ))}
                                     </div>
@@ -318,7 +321,9 @@ export function SourceCodeViewer({ componentName }: SourceCodeViewerProps) {
                                         <div className="flex items-center gap-2">
                                             {getFileTypeIcon(currentFile.type)}
                                             <span className="font-medium">
-                                                {currentFile.fileName}
+                                                {currentFile.path
+                                                    .split("/")
+                                                    .pop()}
                                             </span>
                                             <Badge
                                                 variant="outline"
