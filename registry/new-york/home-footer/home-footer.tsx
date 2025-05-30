@@ -10,7 +10,9 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
 export default function HomeFooter({ className }: { className?: string }) {
-    const [currentYear, setCurrentYear] = useState(2024);
+    const [currentYear, setCurrentYear] = useState(() =>
+        new Date().getFullYear()
+    );
 
     useEffect(() => {
         setCurrentYear(new Date().getFullYear());
