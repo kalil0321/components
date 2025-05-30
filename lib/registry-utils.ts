@@ -1,3 +1,5 @@
+"use server";
+
 export interface RegistryItem {
     name: string;
     type: string;
@@ -18,18 +20,9 @@ export interface RegistryFile {
 export async function getComponentFromRegistry(
     componentName: string
 ): Promise<RegistryItem | null> {
-    // Use a more reliable base URL construction to prevent hydration mismatches
     let baseUrl: string;
 
-    if (typeof window !== "undefined") {
-        // Client-side: use window.location
-        baseUrl = `${window.location.protocol}//${window.location.host}`;
-    } else {
-        // Server-side: use environment variables with fallback
-        const port = process.env.PORT || 3000;
-        baseUrl =
-            process.env.NEXT_PUBLIC_BASE_URL || `http://localhost:${port}`;
-    }
+    baseUrl = "https://components.kalil0321.com"; // for some reason, the env var doesn't work...
 
     const url = `${baseUrl}/r/${componentName}.json`;
     console.log("Fetching component from registry:", url);
@@ -41,7 +34,6 @@ export async function getComponentFromRegistry(
     return data as RegistryItem;
 }
 
-// Read source code for a component
 export async function getComponentSourceCode(
     componentName: string
 ): Promise<RegistryFile[]> {
