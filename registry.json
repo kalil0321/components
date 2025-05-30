@@ -114,10 +114,6 @@
                 {
                     "path": "registry/new-york/particles/particles.tsx",
                     "type": "registry:component"
-                },
-                {
-                    "path": "registry/new-york/particles/profile_picture_no_bg.png",
-                    "type": "registry:ui"
                 }
             ]
         },

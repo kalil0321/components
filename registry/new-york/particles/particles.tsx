@@ -6,7 +6,6 @@ import ParticleImage, {
     ParticleOptions,
     forces,
 } from "react-particle-image";
-import astronautNoBg from "./profile_picture_no_bg.png";
 
 const darkModeParticleOptions: ParticleOptions = {
     color: ({ x, y, image }) => {
@@ -34,7 +33,11 @@ const motionForceDown = (x: number, y: number): ParticleForce => {
     return forces.disturbance(x, y, 100);
 };
 
-export default function Particles() {
+export default function Particles({
+    image = "https://github.com/github.png",
+}: {
+    image: string;
+}) {
     const [isDarkMode, setIsDarkMode] = React.useState(false);
 
     React.useEffect(() => {
@@ -58,20 +61,20 @@ export default function Particles() {
 
     const scale = 1 / 3;
     return (
-        <div className="hidden justify-center items-center p-4 sm:flex">
+        <div className="justify-center items-center p-4">
             <ParticleImage
-                src={astronautNoBg.src}
+                src={image}
                 scale={scale}
                 entropy={30}
-                width={astronautNoBg.width * scale}
-                height={astronautNoBg.height * scale}
+                width={100 * scale}
+                height={100 * scale}
                 maxParticles={20_000}
                 particleOptions={
                     isDarkMode
                         ? darkModeParticleOptions
                         : lightModeParticleOptions
                 }
-                backgroundColor="transparent"
+                backgroundColor="black"
                 mouseMoveForce={motionForce}
                 mouseDownForce={motionForceDown}
             />
