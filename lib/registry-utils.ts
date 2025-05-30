@@ -1,6 +1,3 @@
-import { promises as fs } from "fs";
-import path from "path";
-
 export interface RegistryItem {
     name: string;
     type: string;
@@ -8,63 +5,60 @@ export interface RegistryItem {
     description: string;
     dependencies?: string[];
     registryDependencies?: string[];
-    files: Array<{
-        path: string;
-        type: string;
-        target?: string;
-    }>;
+    files: RegistryFile[];
 }
 
-export interface SourceFile {
+export interface RegistryFile {
     path: string;
-    content: string;
     type: string;
-    fileName: string;
-}
-
-// Read the registry.json file
-export async function getRegistry(): Promise<{ items: RegistryItem[] }> {
-    try {
-        const registryPath = path.join(process.cwd(), "registry.json");
-        const registryContent = await fs.readFile(registryPath, "utf-8");
-        return JSON.parse(registryContent);
-    } catch (error) {
-        console.error("Error reading registry:", error);
-        return { items: [] };
-    }
+    content: string;
 }
 
 // Get a specific component from the registry
 export async function getComponentFromRegistry(
     componentName: string
 ): Promise<RegistryItem | null> {
-    const registry = await getRegistry();
-    return registry.items.find((item) => item.name === componentName) || null;
+    // Use a more reliable base URL construction to prevent hydration mismatches
+    let baseUrl: string;
+
+    if (typeof window !== "undefined") {
+        // Client-side: use window.location
+        baseUrl = `${window.location.protocol}//${window.location.host}`;
+    } else {
+        // Server-side: use environment variables with fallback
+        const port = process.env.PORT || 3000;
+        baseUrl =
+            process.env.NEXT_PUBLIC_BASE_URL || `http://localhost:${port}`;
+    }
+
+    const url = `${baseUrl}/r/${componentName}.json`;
+    console.log("Fetching component from registry:", url);
+    const response = await fetch(url);
+    if (!response.ok) {
+        return null;
+    }
+    const data = await response.json();
+    return data as RegistryItem;
 }
 
 // Read source code for a component
 export async function getComponentSourceCode(
     componentName: string
-): Promise<SourceFile[]> {
+): Promise<RegistryFile[]> {
     const component = await getComponentFromRegistry(componentName);
 
     if (!component) {
         return [];
     }
 
-    const sourceFiles: SourceFile[] = [];
+    const sourceFiles: RegistryFile[] = [];
 
     for (const file of component.files) {
         try {
-            const filePath = path.join(process.cwd(), file.path);
-            const content = await fs.readFile(filePath, "utf-8");
-            const fileName = path.basename(file.path);
-
             sourceFiles.push({
                 path: file.path,
-                content,
+                content: file.content,
                 type: file.type,
-                fileName,
             });
         } catch (error) {
             console.error(`Error reading file ${file.path}:`, error);
