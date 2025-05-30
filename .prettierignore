@@ -1,0 +1,16 @@
+node_modules/
+.next/
+out/
+build/
+dist/
+.git/
+*.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+*.log
+.env*
+coverage/
+.nyc_output/
+public/
+registry.json 
