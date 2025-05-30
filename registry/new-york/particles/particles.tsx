@@ -38,7 +38,7 @@ export default function Particles({
     scale?: number;
     backgroundColor?: string;
 }) {
-    const { setTheme, resolvedTheme } = useTheme();
+    const { resolvedTheme } = useTheme();
 
     const bgColor =
         backgroundColor || (resolvedTheme === "dark" ? "transparent" : "black");
