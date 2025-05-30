@@ -23,13 +23,6 @@ import {
 } from "lucide-react";
 import { RegistryFile } from "@/lib/registry-utils";
 
-interface SourceFile {
-    path: string;
-    content: string;
-    type: string;
-    fileName: string;
-}
-
 interface ComponentData {
     name: string;
     title: string;
