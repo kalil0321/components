@@ -5,7 +5,8 @@
   "title": "Particles",
   "description": "A particles component",
   "dependencies": [
-    "react-particle-image"
+    "react-particle-image",
+    "next-themes"
   ],
   "files": [
     {
