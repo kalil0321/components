@@ -20,7 +20,7 @@ export function OpenInV0Button({
             className={cn(
                 "h-7 gap-1 rounded-lg shadow-none bg-black px-3 text-xs text-white hover:bg-black hover:text-white dark:bg-white dark:text-black",
                 className,
-                "hidden md:block"
+                "hidden md:flex"
             )}
             asChild
             onClick={handleClick}

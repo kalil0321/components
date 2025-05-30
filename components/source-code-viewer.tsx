@@ -200,7 +200,7 @@ export function SourceCodeViewer({ componentName }: SourceCodeViewerProps) {
 
     return (
         <Sheet open={isOpen} onOpenChange={handleOpenChange}>
-            <SheetTrigger asChild className="hidden md:block">
+            <SheetTrigger asChild className="hidden md:flex">
                 <Button variant="outline" className="flex items-center gap-2">
                     <Code className="w-4 h-4" />
                     View Source Code
